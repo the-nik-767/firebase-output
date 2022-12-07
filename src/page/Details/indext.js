@@ -18,6 +18,7 @@ import કોંગ્રેસ from "./કોંગ્રેસ.jpeg";
 import આપ from "./આપ.jpeg";
 import અન્ય from "./અન્ય.jpeg";
 import ભાજપ from "./ભાજપ.jpeg";
+import aajnivat from "./aajnivat.png"
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "./99714-go-live.json";
 import { db } from "../../firebase-config";
@@ -194,7 +195,6 @@ const Details = (props) => {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>{tempData.location}</h1>
-
       <div
         style={{
           width: "100%",
@@ -246,7 +246,7 @@ const Details = (props) => {
           data={databar}
         />
       </div>
-      <Card className="card" style={{ width: "22rem" }}>
+      <Card className="card" style={{ width: "22rem",marginTop:"30px" }}>
         <Card.Body>
           <Card.Title
             style={{ textAlign: "center" }}
