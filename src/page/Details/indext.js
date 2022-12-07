@@ -44,7 +44,7 @@ const Details = (props) => {
   const [votenumber, setvotenumber] = useState([]);
   const [tempData, setTempdata] = useState(Location.state.votername);
   const [votenume, setvotenume] = useState([]);
-  const [Profile, setProfile] = useState();
+  const [Profile, setProfile] = useState({});
 
   const [user, setUser] = useState([]);
   const usersCollectionRef = collection(db, "users");
@@ -168,8 +168,8 @@ const Details = (props) => {
   const updateData = (datas) => {
     const tempnumber = [];
     const tempvotenume = [];
-    const sortedData = datas.votedetails.sort((a, b) => b.vote - a.vote);
-
+    const temp = JSON.parse(JSON.stringify(datas));
+    const sortedData = JSON.parse(JSON.stringify(temp.votedetails.sort((a, b) => b.vote - a.vote)));
     datas.votedetails.map((i) => {
       tempnumber.push(i.vote);
       tempvotenume.push(i.name);
@@ -178,14 +178,15 @@ const Details = (props) => {
     });
 
     console.log("profile_path", sortedData);
-    setProfile({
+    const obj = {
       profile_path: sortedData[0].file,
       ahead_number: sortedData[0].vote - sortedData[1].vote,
       party_name: sortedData[0].party,
       nameud: sortedData[0].name,
-    });
+    }
+    setProfile({...obj});
     setvotenumber(tempnumber);
-    setTempdata(datas);
+    setTempdata({...temp});
     setvotenume(tempvotenume);
   };
 
