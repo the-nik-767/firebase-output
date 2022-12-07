@@ -1,0 +1,40 @@
+.main {
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pic {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardprofile {
+  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+.bar {
+  width: 400;
+  height: 300;
+  margin-left: 200;
+  margin-right: 200;
+}
+
+@media (max-width: 767px) {
+  .main {
+    flex-direction: column;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .bar {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

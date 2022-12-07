@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Loging from "./page/loging/indext";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { db } from "../src/firebase-config";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import Details from "./page/Details/indext";
 
 function App() {
+  const [user, setUser] = useState([]);
+  const usersCollectionRef = collection(db, "users");
+
+  useEffect(() => {
+    const getuser = async () => {
+      const data = await getDocs(usersCollectionRef);
+      setUser(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getuser();
+    const colRef = collection(db, "users");
+    //real time update
+    onSnapshot(colRef, (snapshot) => {
+      getuser();
+
+      // snapshot.docs.forEach((doc) => {
+      //   console.log([doc.data()]);
+      //   // console.log("onsnapshot", doc.data());
+      // });
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Loging />} />
+        {user.map((Items, index) => {
+          return (
+            <Route
+              key={index}
+              path={`${Items.location}`}
+              element={<Details />}
+            />
+          );
+        })}
+      </Routes>
+    </BrowserRouter>
   );
 }
 

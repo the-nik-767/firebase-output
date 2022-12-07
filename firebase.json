@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": "build",
+    "site": "aaj-ni-vat",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
